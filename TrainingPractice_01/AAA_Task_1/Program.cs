@@ -9,24 +9,41 @@ namespace AAA_Task_1
         {
             int gold;
             int gems = 0;
+            int buygems;
 
-            Console.WriteLine("Сколько у Вас золота?");
-            gold = Convert.ToInt32(Console.ReadLine());
+balanceGold: 
+            try
+            {
+                Console.WriteLine("Сколько у Вас золота?");
+                gold = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Введены некоректные данные!\nВведите числовое значение!");
+                goto balanceGold;
+            }
+buyGems:
+            try
+            {
+                Console.WriteLine("Сколько хотите купить кристалов? (1 кристал = 10 золота)");
+                buygems = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Введены некоректные данные!\nВведите числовое значение!");
+                goto buyGems;
+            }
 
-            Console.WriteLine("Сколько хотите купить кристалов? (1 кристал = 10 золота)");
-            int buygems = Convert.ToInt32(Console.ReadLine());
-
-            if (gold >= buygems *  _gemPrice)
+            if (gold >= buygems * _gemPrice)
             {
                 gold -= buygems * _gemPrice;
                 gems = buygems;
+                Console.WriteLine("Сделка успешно совершенна!");
             }
             else
-            {
                 Console.WriteLine("\nНедостаточно золота");
-            }
 
-            Console.WriteLine($"\nВаш баланс:\nЗолото: {gold}\nКристалы: {gems}");
+            Console.WriteLine($"\nВаш баланс:\nЗолото: {gold}\nКристалы: {gems}");  
         }
     }
 }
