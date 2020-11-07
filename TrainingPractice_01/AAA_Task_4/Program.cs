@@ -125,7 +125,7 @@ namespace AAA_Task_4
                     if (playerIsDefended == false)
                     {
                         hpPlayer -= damage;
-                        Console.Write($"*Нанесенный урон Игроку ");
+                        Console.Write($"*Нанесенный урон Игроку");
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine(damage);
                     }
