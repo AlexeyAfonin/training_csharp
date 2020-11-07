@@ -1,0 +1,13 @@
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\bin\Debug\netcoreapp3.1\AAA_Task_4.exe
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\bin\Debug\netcoreapp3.1\AAA_Task_4.deps.json
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\bin\Debug\netcoreapp3.1\AAA_Task_4.runtimeconfig.json
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\bin\Debug\netcoreapp3.1\AAA_Task_4.runtimeconfig.dev.json
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\bin\Debug\netcoreapp3.1\AAA_Task_4.dll
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\bin\Debug\netcoreapp3.1\AAA_Task_4.pdb
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\obj\Debug\netcoreapp3.1\AAA_Task_4.csprojAssemblyReference.cache
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\obj\Debug\netcoreapp3.1\AAA_Task_4.AssemblyInfoInputs.cache
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\obj\Debug\netcoreapp3.1\AAA_Task_4.AssemblyInfo.cs
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\obj\Debug\netcoreapp3.1\AAA_Task_4.csproj.CoreCompileInputs.cache
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\obj\Debug\netcoreapp3.1\AAA_Task_4.dll
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\obj\Debug\netcoreapp3.1\AAA_Task_4.pdb
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_4\obj\Debug\netcoreapp3.1\AAA_Task_4.genruntimeconfig.cache

@@ -1,0 +1,13 @@
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\bin\Debug\netcoreapp3.1\AAA_Task_5.exe
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\bin\Debug\netcoreapp3.1\AAA_Task_5.deps.json
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\bin\Debug\netcoreapp3.1\AAA_Task_5.runtimeconfig.json
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\bin\Debug\netcoreapp3.1\AAA_Task_5.runtimeconfig.dev.json
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\bin\Debug\netcoreapp3.1\AAA_Task_5.dll
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\bin\Debug\netcoreapp3.1\AAA_Task_5.pdb
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\obj\Debug\netcoreapp3.1\AAA_Task_5.AssemblyInfoInputs.cache
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\obj\Debug\netcoreapp3.1\AAA_Task_5.AssemblyInfo.cs
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\obj\Debug\netcoreapp3.1\AAA_Task_5.csproj.CoreCompileInputs.cache
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\obj\Debug\netcoreapp3.1\AAA_Task_5.dll
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\obj\Debug\netcoreapp3.1\AAA_Task_5.pdb
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\obj\Debug\netcoreapp3.1\AAA_Task_5.genruntimeconfig.cache
+D:\CSHARP\Projects\TrainingPractice_01\AAA_Task_5\obj\Debug\netcoreapp3.1\AAA_Task_5.csprojAssemblyReference.cache
