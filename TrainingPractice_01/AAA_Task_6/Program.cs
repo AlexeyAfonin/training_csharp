@@ -4,8 +4,8 @@ namespace AAA_Task_6
 {
     class Program
     {
-        private static string[,] _dossier = new string[0, 2];
-        private static int _size = 0;
+        private static string[,] _dossier = new string[0, 2]; // Досье[НомерДосье, ФИО и Должность]
+        private static int _size = 0; //Размер списка досье
 
         static void Main(string[] args)
         {
@@ -21,7 +21,7 @@ namespace AAA_Task_6
                     "\n\t5. Выйти из программы");  
                 Console.WriteLine("\nВведите номер команды:");
                 char numberCommand = Console.ReadKey(true).KeyChar;
-                if (numberCommand == '1')
+                if (numberCommand == '1') //Добавить досье
                 {
                 surname:
                     Console.WriteLine("Введите фамилию: ");
@@ -47,11 +47,11 @@ namespace AAA_Task_6
                     string fio = surname + " " + name + " " + patronymic;
                     AddDossier(fio, post);
                 }
-                else if (numberCommand == '2')
+                else if (numberCommand == '2') //Вывести все досье
                 {
                     List();
                 }
-                else if (numberCommand == '3')
+                else if (numberCommand == '3') //Удалить досье
                 {
                     if (_size < 1)
                     {
@@ -78,18 +78,18 @@ namespace AAA_Task_6
                         }
                     }
                 }
-                else if (numberCommand == '4')
+                else if (numberCommand == '4') //Найти досье по фамилии
                 {
                     Console.WriteLine("Введите фамилию для поиска: ");
                     string surname = Console.ReadLine();
                     SearchDossier(surname);
                 }
-                else if (numberCommand == '5')
+                else if (numberCommand == '5') //Выйти из программы
                 {
                     Console.WriteLine("Завершение работы программы..");
                     Environment.Exit(1);
                 }
-                else
+                else //Если такого номера комманды нет
                 {
                     Console.WriteLine("Комманды под таким номер не существует! Выберете комманду от 1 до 5");
                     Console.WriteLine($"Нажмите любую клавишу, чтобы продолжить");
@@ -99,11 +99,12 @@ namespace AAA_Task_6
             }
         }
 
-        static void AddDossier(string surname, string post)
+        private static void AddDossier(string surname, string post)
         {
             NewSize(_size + 1);
             _dossier[_size - 1, 0] = surname;
             _dossier[_size - 1, 1] = post;
+
             Console.WriteLine($"Добавленно досье: " +
                 $"\n\tФИО: {surname} " +
                 $"\n\tДолжность: {post}" +
@@ -111,7 +112,34 @@ namespace AAA_Task_6
             Console.WriteLine($"Нажмите любую клавишу, чтобы продолжить");
             Console.ReadKey();
         }
-        static void List()
+        private static void NewSize(int newsize)
+        {
+            if(newsize < 0)
+            {
+                Console.WriteLine($"ERROR: Неправильный размер массива!");
+                Console.WriteLine($"Нажмите любую клавишу, чтобы продолжить");
+                Console.ReadKey();
+                return;
+            }
+            if (newsize != _size)
+            {
+                string[,] tempDossier = new string[newsize, 2];
+                for (int i = 0; i < Math.Min(_size, newsize); i++)
+                {
+                    tempDossier[i, 0] = _dossier[i, 0];
+                    tempDossier[i, 1] = _dossier[i, 1];
+                }
+                if (newsize > _size) 
+                    for (int i = _size; i < newsize; i++)
+                    {
+                        tempDossier[i, 0] = "";
+                        tempDossier[i, 1] = "";
+                    }
+                _dossier = tempDossier;
+                _size = newsize;
+            }
+        }
+        private static void List()
         {
             if (_size == 0)
                 Console.WriteLine("Список досье пустой!");
@@ -124,7 +152,7 @@ namespace AAA_Task_6
             Console.WriteLine($"Нажмите любую клавишу, чтобы продолжить");
             Console.ReadKey();
         }
-        static void RemoveDossier(int numberDossier)
+        private static void RemoveDossier(int numberDossier)
         {
             if (numberDossier >= _size || numberDossier < 0 || _size <= 0)
             {
@@ -134,27 +162,27 @@ namespace AAA_Task_6
                 return;
             }
 
-            string[,] newListDossier = new string[_size - 1, 2];
-            int temp = 0;
+            string[,] tempDossier = new string[_size - 1, 2]; //Временная переменная для обновления списка(массива)
+            int tempNum = 0;
             for (int i = 0; i < _size; i++)
             {
                 if (i != numberDossier)
                 {
-                    newListDossier[temp, 0] = _dossier[i, 0];
-                    newListDossier[temp, 0] = _dossier[i, 1];
-                    temp++;
+                    tempDossier[tempNum, 0] = _dossier[i, 0];
+                    tempDossier[tempNum, 1] = _dossier[i, 1];
+                    tempNum++;
                 }
                 else
                     Console.WriteLine($"Досье {_dossier[i, 0]} успешно удалено!");
             }
-            _dossier = newListDossier;
+            _dossier = tempDossier;
             _size -= 1;
 
             Console.WriteLine($"Нажмите любую клавишу, чтобы продолжить");
             Console.ReadKey();
         }
 
-        static void SearchDossier(string str)
+        private static void SearchDossier(string str)
         {
             int count = 0;
             for (int i = 0; i < _size; i++)
@@ -166,25 +194,9 @@ namespace AAA_Task_6
                 }
             }
             if (count == 0) 
-                Console.WriteLine("Не нашлось досье с такими фамилиями");
+                Console.WriteLine("Досье с такой фамилий не найдено!");
             Console.WriteLine($"Нажмите любую клавишу, чтобы продолжить");
             Console.ReadKey();
         }
-        static void NewSize(int newsize)
-        {
-            string[,] newListDossier = new string[newsize, 2];
-            for (int i = 0; i < Math.Min(_size, newsize); i++)
-            {
-                newListDossier[i, 0] = _dossier[i, 0];
-                newListDossier[i, 1] = _dossier[i, 1];
-            }
-            if (newsize > _size) for (int i = _size; i < newsize; i++)
-                {
-                    newListDossier[i, 0] = "";
-                    newListDossier[i, 1] = "";
-                }
-            _dossier = newListDossier;
-            _size = newsize;
-        }  
     }
 }
