@@ -92,6 +92,8 @@ namespace AAA_Task_6
                 else
                 {
                     Console.WriteLine("Комманды под таким номер не существует! Выберете комманду от 1 до 5");
+                    Console.WriteLine($"Нажмите любую клавишу, чтобы продолжить");
+                    Console.ReadKey();
                     goto numberCommand;
                 }
             }
