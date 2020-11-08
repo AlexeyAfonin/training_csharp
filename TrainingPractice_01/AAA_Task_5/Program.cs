@@ -125,6 +125,9 @@ namespace AAA_Task_5
             Console.WriteLine(massage);
             _end = true;
         }
+        /// <summary>
+        /// Считаем количество совершенных ходов
+        /// </summary>
         private static void TurnsBar(int turns)
         {
             _turnsBar++;
