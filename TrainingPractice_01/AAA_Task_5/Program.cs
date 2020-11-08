@@ -63,7 +63,7 @@ namespace AAA_Task_5
             Console.ResetColor();
             Console.SetCursorPosition(35, 11);
             Console.Write($"Нажмите любую клавишу, чтобы продолжить...");
-            Console.SetCursorPosition(35, 40);
+            Console.SetCursorPosition(35, 21);
             Console.ReadKey(true);
         }
         /// <summary>
