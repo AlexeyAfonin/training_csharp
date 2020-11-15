@@ -25,5 +25,16 @@ namespace tic_tac_toe
                 textBox1.Text = "Нет записей игр";
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText(@"ScoreTable.txt", "");
+            textBox1.Text = File.ReadAllText(@"ScoreTable.txt");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

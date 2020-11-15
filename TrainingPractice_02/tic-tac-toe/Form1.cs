@@ -20,13 +20,13 @@ namespace tic_tac_toe
         //Запуск игры с режимом Игрок против Компьютера (Один игрок)
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 startGame_OnePlayer = new Form2(this, 1);
+            Form2 startGame_OnePlayer = new Form2(1);
             startGame_OnePlayer.Show();
         }
         //Запуск игры с режимом Игрок против Игрока (Два игрока)
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 startGame_TwoPlayer = new Form2(this, 2);
+            Form2 startGame_TwoPlayer = new Form2(2);
             startGame_TwoPlayer.Show();
         }
         //Открываем окно с записью игр

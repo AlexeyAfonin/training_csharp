@@ -41,40 +41,31 @@ namespace tic_tac_toe
         //Запись игры в текстовый файл
         StreamWriter _scoreTable = new StreamWriter("ScoreTable.txt", true); //Получим доступ к существующему файлу, либо создадим новый
 
-        public Form2(Form1 F1_, int howManyPlayers)
+        public Form2(int howManyPlayers)
         {
             InitializeComponent();
             if (howManyPlayers == 1)
                 _onePlayer = true;
             else
                 _onePlayer = false;
-
-            //Создаем новую запись игры и записываем её
-            _scoreTable.WriteLine($"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToLongTimeString()}");
-            if (_onePlayer == true)
-            {
-                _scoreTable.WriteLine("Игрок(X) против Компьютера(O)");
-                this.Text = "Один игрок";
-            }
-            else
-            {
-
-                _scoreTable.WriteLine("Игрок(X) против Игрока(O)");
-                this.Text = "Два игрока";
-            }
         }
         //Отрабатываем нажатие кнопики
         private void ClickButton(object sender, EventArgs e)
         {
             if ((sender as Button).Text == "") //Если объект типа "Кнопка" имеет пустой текст (пустая клекта)
             {
-                Controls["button" + Convert.ToInt32((sender as Button).Name[6].ToString())].Text = _whoMove.ToString(); //Смотрим, какая кнопка была нажата
+                if(_numMovePlayer == 1)
+                    Controls["button" + Convert.ToInt32((sender as Button).Name[6].ToString())].ForeColor = Color.Red;
+                else
+                    Controls["button" + Convert.ToInt32((sender as Button).Name[6].ToString())].ForeColor = Color.Blue;
+                
+                Controls["button" + Convert.ToInt32((sender as Button).Name[6].ToString())].Text = _whoMove.ToString(); //Смотрим, какая кнопка(ячейка) была нажата и делаем в неё ход
                 _cells[Convert.ToInt32((sender as Button).Name[6].ToString()) - 1] = _numMovePlayer;
                 WinCheck(_whoMove);
                 //Если игра не завершена и ещё есть куда ходить
                 if ((!_movesEndend) && (!_gameOver))
                 {
-                    textBox1.Text = "ход O";
+                    textBox1.Text =  $"Ход {_whoMove}";
                     //Проверяем, какой выбран редим (Один игрок(Игрок против Компьютера) или Два игрока)
                     if(_onePlayer) //Если один игрок
                         AIBot();
@@ -167,6 +158,7 @@ namespace tic_tac_toe
         private void MoveBot(int numCell)
         {
             _cells[numCell] = 2;
+            Controls["button" + (numCell + 1).ToString()].ForeColor = Color.Blue;
             Controls["button" + (numCell + 1).ToString()].Text = "O";
             _playerNotWin = false;
             WinCheck('O');
@@ -188,23 +180,7 @@ namespace tic_tac_toe
                     _movesEndend = false;
                     _gameOver = true;
 
-                    //Запишим игровое поле
-                    char[] temp = new char[_cells.Length];
-                    for(int i = 0; i < _cells.Length; i++)
-                    {
-                        if (_cells[i] == 1)
-                            temp[i] = 'X';
-                        else if (_cells[i] == 2)
-                            temp[i] = 'O';
-                        else if (_cells[i] == 0)
-                            temp[i] = '*';
-                    }
-                    _scoreTable.WriteLine($"{temp[0]} {temp[1]} {temp[2]}");
-                    _scoreTable.WriteLine($"{temp[3]} {temp[4]} {temp[5]}");
-                    _scoreTable.WriteLine($"{temp[6]} {temp[7]} {temp[8]}");
-                    _scoreTable.WriteLine($"Победили {whoseMove}"); //Запишим итог игры
-                    _scoreTable.Close(); //Закрываем файл, чтобы сохранить данные и освободить процесс
-
+                    WriteGame($"Победили {whoseMove}"); //Запишем результат игры в файл
                     break; //Выходим из цикла for
                 }
                 _movesEndend = true;
@@ -220,47 +196,60 @@ namespace tic_tac_toe
             {
                 _gameOver = true;
                 MessageBox.Show("НИЧЬЯ");
-
-                //Запишим игровое поле
-                char[] temp = new char[_cells.Length];
-                for (int i = 0; i < _cells.Length; i++)
-                {
-                    if (_cells[i] == 1)
-                        temp[i] = 'X';
-                    else if (_cells[i] == 2)
-                        temp[i] = 'O';
-                    else if (_cells[i] == 0)
-                        temp[i] = '*';
-                }
-                _scoreTable.WriteLine($"{temp[0]} {temp[1]} {temp[2]}");
-                _scoreTable.WriteLine($"{temp[3]} {temp[4]} {temp[5]}");
-                _scoreTable.WriteLine($"{temp[6]} {temp[7]} {temp[8]}");
-                _scoreTable.WriteLine("Ничья"); //Запишим итог игры
-                _scoreTable.Close(); //Закрываем файл, чтобы сохранить данные и освободить процесс
+                //Запишем результат игры в файл
+                WriteGame("Ничья");
             }      
         }
+
+        //Запись результата игры в текстовый файл
+        private void WriteGame(string whoWin)
+        {
+            //Создаем новую запись игры и записываем её
+            _scoreTable.WriteLine($"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToLongTimeString()}");
+            _scoreTable.WriteLine(_onePlayer ? "Игрок(X) против Компьютера(O)" : "Игрок(X) против Игрока(O)");
+            this.Text = _onePlayer ? "Один игрок" : "Два игрока";
+
+            char[] temp = new char[_cells.Length];
+            for (int i = 0; i < _cells.Length; i++)
+            {
+                if (_cells[i] == 1)
+                    temp[i] = 'X';
+                else if (_cells[i] == 2)
+                    temp[i] = 'O';
+                else if (_cells[i] == 0)
+                    temp[i] = '*';
+            }
+            //Запишим игровое поле
+            _scoreTable.WriteLine($"{temp[0]} {temp[1]} {temp[2]}");
+            _scoreTable.WriteLine($"{temp[3]} {temp[4]} {temp[5]}");
+            _scoreTable.WriteLine($"{temp[6]} {temp[7]} {temp[8]}");
+            _scoreTable.WriteLine(whoWin); //Запишим итог игры
+            _scoreTable.WriteLine("");
+            _scoreTable.Close(); //Закрываем файл, чтобы сохранить данные и освободить процесс
+        }
+
         //Отрабатывает при закрытии формы
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(_gameOver == false) //Если игра не была завершена
-            {
-                char[] temp = new char[_cells.Length];
-                for (int i = 0; i < _cells.Length; i++)
-                {
-                    if (_cells[i] == 1)
-                        temp[i] = 'X';
-                    else if (_cells[i] == 2)
-                        temp[i] = 'O';
-                    else if (_cells[i] == 0)
-                        temp[i] = '*';
-                }
-                //Запишим игровое поле
-                _scoreTable.WriteLine($"{temp[0]} {temp[1]} {temp[2]}");
-                _scoreTable.WriteLine($"{temp[3]} {temp[4]} {temp[5]}");
-                _scoreTable.WriteLine($"{temp[6]} {temp[7]} {temp[8]}");
-                _scoreTable.WriteLine("Партия не завершена"); //Запишим итог игры
-                _scoreTable.Close(); //Закрываем файл, чтобы сохранить данные и освободить процесс
-            }
+                WriteGame("Партия не завершена"); //Запишем результат игры в файл
+        }
+
+        //Перезапуск формы
+        private void button10_Click(object sender, EventArgs e)
+        {
+            _gameOver = true;
+            _scoreTable.Close();
+
+            Form2 fr = new Form2(_onePlayer ? 1 : 2);
+            fr.Show();
+
+            this.Close();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
